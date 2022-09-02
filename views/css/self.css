@@ -1,0 +1,154 @@
+@font-face {
+  font-family: Diavlo-Bold;
+  src: url('../fonts/Diavlo_II_37/Diavlo_BOLD_II_37.otf');
+}
+
+@font-face {
+  font-family: Advent-Bold3;
+  src: url('../fonts/INDE_advent/advent-Bd3.otf');
+}
+
+
+.x00 {
+	background: -webkit-gradient(linear, left top, left bottom, from(#08c), to(#335));
+	opacity: 0.9;
+	margin-bottom: 20px;
+	padding: 14px;
+	height: 72px;
+	width: 72px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 50%;
+	color: #fff !important;
+	transition: all 0.2s;
+	display: flex;
+	
+	justify-content: center;
+	align-items: center;
+}
+
+.x01-dark {
+	/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+
+.x01-dark:hover .x00 {
+	opacity:1;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.x01-dark:hover{
+	opacity:1;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#header-anim .header-main , #invisible-header .header-main {
+	font-size: 52px;
+	color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	z-index: 100; 		/* above any animation I choose to put*/
+}
+
+#header-anim, #invisible-header  {
+	font-size: 40px;
+	color: white;   
+	text-transform: uppercase;
+	display: flex;
+	font-weight: normal;
+	flex-wrap: wrap;
+	align-items: baseline;	/* flex */
+	justify-content: center;
+}
+
+#header-anim .header-sub-text {
+	font-size: 40px;
+	color: white;   
+	text-transform: uppercase;
+	font-weight: normal;
+	width: 0px;
+	text-align: left;
+	overflow: hidden;
+	z-index: 101; 		/* above main chars */
+}
+
+#invisible-header {
+	opacity: 0;
+}
+@media only screen and (max-width: 991px) {}
+
+@media only screen and (max-width: 767px) {
+	#header-anim .header-main , #invisible-header .header-main {
+		font-size: 36px;
+	}
+
+	#header-anim, #invisible-header  {
+		font-size: 32px;
+	} 	
+
+	#header-anim .header-sub-text {
+		font-size: 32px;
+	}
+
+}
+
+@media only screen and (max-width: 480px) {}
+
+
+/* Particles canvas */
+
+#particles-cnv {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+#header-anim{
+	/* font-family: Advent-Bold3; */
+	font-family: 'Montserrat', sans-serif;
+}
+
+.home-bottom {
+	position: absolute;
+	left: 0;
+	right: 0;
+	text-align:center;
+	bottom: 24px;
+}
+
+.service {
+	height: 220px !important;
+}
+
+.testimonial-inner {
+	height: 300px !important;
+}
+
+#sponsors .sponsor-center {
+	text-align: center;
+}
+
+#sponsors .sponsor-space {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content:space-evenly;
+	align-items: center;
+	align-content: space-between;
+	margin: 24px 0;
+}
+
+#sponsors .sponsor-logo {
+	height: 120px;
+	margin: 24px;
+}
+
+.faculty {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content:space-evenly;
+	align-items: center;
+	align-content: space-between;
+	margin: 24px;
+}

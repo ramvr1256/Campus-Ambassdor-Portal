@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Dashboard | Campus Ambassador Portal, Techkriti'20</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="/dash/assets/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/dash/assets/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/dash/assets/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="/dash/assets/vendor/chartist/css/chartist-custom.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="/dash/assets/css/main.css">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="/dash/assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/dash/assets/img/favicon.png">
+  <script>
+		  var xhttp = new XMLHttpRequest();
+		  function status(id,val){
+        xhttp.open("POST", "/request/view/professor/", true);
+        
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.onreadystatechange = function () {
+          if (xhttp.readyState == 4 && xhttp.status == 200){
+            window.location.reload();
+          }
+        }
+        xhttp.send("id"+ "="+id+"&"+ "status="+val); 
+      }
+      function status1(id,val){
+        xhttp.open("POST", "/project/view/professor/", true);
+        
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.onreadystatechange = function () {
+          if (xhttp.readyState == 4 && xhttp.status == 200){
+            window.location.reload();
+          }
+        }
+        xhttp.send("id"+ "="+id+"&"+ "status="+val); 
+		  }
+  </script>	
+  <script>
+   function edit()
+   {
+    var x = document.getElementById("panel");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+   }
+  
+  
+  
+  </script>
+</head>
+
+  <body>
+    <!-- WRAPPER -->
+    <div id="wrapper">
+      <!-- NAVBAR -->
+    <nav class="navbar navbar-default navbar-fixed-top navgrad">
+			<div class="brand">
+				<a href="/home/"><img src="/dash/assets/img/logo-dark.png" alt="AnC Logo" class="img-responsive logo"></a>
+			</div>
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+				</div>
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right">
+						<!-- <li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-link"></i> <span>Quick Links</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+							<li><a href="https://iitk.ac.in"target="_blank">IITK Home</a></li>
+								<li><a href="https://www.iitk.ac.in/doaa/"target="_blank">DOAA</a></li>
+								<li><a href="http://surge.iitk.ac.in"target="_blank">SURGE</a></li>
+								<li><a href="http://spo.iitk.ac.in/"target="_blank">SPO</a></li>
+							</ul>
+						</li> -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="https://oa.cc.iitk.ac.in:443/Oa/Jsp/Photo/<%=PfNo%>_0.jpg" class="img-circle" alt=""/>
+                  <span><%=name%></span>
+                  <i class="icon-submenu lnr lnr-chevron-down"></i
+                ></a>
+							<ul class="dropdown-menu">
+								<li><a href="/home/professor/profile/"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="/home/profile/changepwd/"><i class="lnr lnr-cog"></i> <span>Change Password</span></a></li>
+								<li><a href="/home/user/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>								
+							</ul>
+              </li>
+            </ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+      <!-- END NAVBAR -->
+      <!-- LEFT SIDEBAR -->
+      <div id="sidebar-nav" class="sidebar">
+        <div class="sidebar-scroll">
+          <nav>
+            <ul class="nav">
+              <li>
+                <a href="../home/" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a>
+              </li>
+              <li>
+                <a href="/project/createproject" class=""><i class="lnr lnr-list"></i> <span>New Task</span></a>
+              </li>
+              <li>
+                <a href="/home/professor/profile" class=""><i class="lnr lnr-user"></i><span>Profile</span></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- END LEFT SIDEBAR -->
+      <!-- MAIN -->
+      <div class="main">
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+          <div class="container-fluid">
+            <div class="panel">
+              <div class="panel-heading">
+                <h3 class="panel-title"><%=project.title%></h3>
+              </div>
+              <div class="panel-body">
+                <table class="proj-data">
+                  <tbody>
+                    
+    
+                    <tr>
+                      <th>Offered on:</th>
+                      <td><%var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];%><%= project.createdAt.getDate()%> - <%= months[project.createdAt.getMonth()]%> - <%= project.createdAt.getFullYear()%></td>
+                    </tr>
+                    <tr>
+                      <th>Last Date</th>
+                      <td><%=project.lastDate%></td>
+                    </tr>
+                    <tr>
+                      <th>Status:</th>
+                      <td>
+                        <% if (project.available){%>
+                          <span class="label label-success">Open</span>
+                          <% }else{%>
+                            <span class="label label-danger">Close  </span>
+                            <% }%>
+                          </td>
+                        </tr>
+                        
+                        <% if (project.file){%>
+                          <tr>
+                            <th>File:</th>
+                            <td>
+                                <a href="/project/view/file/<%=project._id%>" target="_blank">File</a>
+                            </td>
+                          </tr>
+                        <% }%>
+                          <tr>
+                          <th>Description:</th>
+                          <td><%=project.description%></td>
+                        </tr>
+                  </tbody>
+                </table>
+                <br>
+                <button class="btn btn-default"onclick="edit();">Edit </button><br>
+                <br />
+                <% if (project.available){%>
+  								<button type="button" class="btn btn-danger"onclick="status1('<%= project._id %>',false);">Close</button>
+                <% }else{%>
+                  <button type="button" class="btn btn-success"onclick="status1('<%= project._id %>',true);">Open</button>
+                <% }%>
+              </div>
+            </div>
+            <!-- <div class="col-md-4">
+									<select class="form-control" id="dept-select">
+										<option value="all" selected>All departments</option>
+										<option value="Computer Science & Engg.">Computer Science and Engineering</option>
+										<option value="Electrical Engg.">Electrical Engineering</option>
+										<option value="Mathematics">Mathematics and Scientific Computing</option>
+										<option value="Mechanical Engineering">Mechanical Engineering</option>
+										<option value="Civil Engg.">Civil Engineering</option>
+										<option value="Economics">Economics</option>
+										<option value="Aerospace Engg.">Aerospace Engineering</option>
+										<option value="Chemical Engg.">Chemical Engineering</option>
+										<option value="Chemistry">Chemistry</option>
+										<option value="Physics">Physics</option>
+									</select>
+							</div> -->
+              <br>
+              <br>
+              <div class="panel page-form" style="display: none;" id="panel">
+                <div class="panel-heading">
+                  <h2>Update a task</h2>
+                </div>
+  
+                <div class="panel-body">
+                  <div class="form">
+                    <form
+                      id="uploadForm"
+                      action="/project/updateproject/<%=project._id%>"
+                      method="POST"
+                    >
+                      <div class="form-group">
+                        <label>Title<font color="red">*</font></label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="title"
+                          value="<%=project.title%>"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Whatsapp<font color="red"></font></label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="whatsapp"
+                          value="<%=project.whatsapp%>"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Facebook<font color="red"></font></label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="facebook"
+                          value="<%=project.facebook%>"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Twitter<font color="red"></font></label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="twitter"
+                          value="<%=project.twitter%>"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Last Date<font color="red">*</font></label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="lastDate"
+                          value="<%=project.lastDate%>"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label
+                          >POINTS<font color="red">*</font></label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          name="points"
+                          min="1"
+                          max="100"
+                          required
+                          value="<%=project.points%>"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label>Description<font color="red">*</font></label>
+  
+                        <textarea class="form-control"
+                        name="description" form="uploadForm" rows="10"><%=project.description%></textarea>
+
+                      </div>
+                      <font color="red">*</font> marked fields must be filled.
+                      <br />
+                      <br />
+                     
+                      <div class="text-right">
+                        <button
+                          type="submit"
+                          class="btn btn-primary mx-auto form-submit-btn"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </form>
+                    <!-- </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            
+
+
+
+            <ul class="nav nav-pills" id="tablist">
+              <li role="presentation" class="active">
+                <a href="#">Waiting <strong>(<%=requests.filter(request => request.status == "Pending").length%>)</strong></a>
+              </li>
+              <li role="presentation">
+                <a href="#">Accepted <strong>(<%=requests.filter(request => request.status == "Accepted").length%>)</strong></a>
+              </li>
+              <li role="presentation">
+                <a href="#">Rejected <strong>(<%=requests.filter(request => request.status == "Rejected").length%>)</strong></a>
+              </li>
+              <!-- <li role="presentation">
+                  <a href="#">Ask to Contact <strong>(<%=requests.filter(request => request.status == "Ask to Meet").length%>)</strong></a>
+              </li> -->
+            </ul>
+            <br />
+            <div id="tabcontent">
+              <!-- Waiting Requests -->
+              <div class="tab-page active">
+                <div class="panel">
+                  <div class="panel-body no-padding">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr >
+                          <th>Name</th>
+                          <th>image</th>
+                          <th>Applied On</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for (var i = 0;i<requests.length;i++) { %>
+                          <%if (requests[i].status == "Pending"){%> 
+                            <tr class="prj-row">
+                              <td><%= requests[i].student.name %></td>
+                        
+                                  <td><a href="/request/FILE/view/<%=requests[i]._id%>" target="_blank">Image</a></td>
+                                  <td><%var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];%><%= requests[i].createdAt.getDate()%> - <%= months[requests[i].createdAt.getMonth()]%> - <%= requests[i].createdAt.getFullYear()%></td>
+                                  <td>
+                                    <button type="button" class="btn btn-success" onclick="status('<%= requests[i]._id %>','Accepted');">Accept</button>
+                                    <button type="button" class="btn btn-danger" onclick="status('<%= requests[i]._id %>','Rejected');">Reject</button>
+                                    <!-- <button type="button" class="btn btn-secondary" onclick="status('<%= requests[i]._id %>','Ask to Meet');">Ask to Contact</button> -->
+                                  </td>
+                                <td><a href="../request/view/<%= requests[i]._id %>">See more >></a></td>
+                              </tr>
+                          <% } %>
+                        <% } %>                
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- Accepted Requests -->
+              <div class="tab-page">
+                <div class="panel">
+                  <div class="panel-body no-padding">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Image</th>
+                          <th>Applied On</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <% var send= ""%>
+                        <% for (var i = 0;i<requests.length;i++) { %>
+                                       <%if (requests[i].status == "Accepted"){%> 
+                                        <tr class="prj-row">
+                                            <td><%= requests[i].student.name %></td>
+                                            <td><a href="/request/FILE/view/<%=requests[i]._id%>" target="_blank">Image</a></td>
+
+                                            <td><%var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];%><%= requests[i].createdAt.getDate()%> - <%= months[requests[i].createdAt.getMonth()]%> - <%= requests[i].createdAt.getFullYear()%></td>
+                                            <td><a href="../request/view/<%= requests[i]._id %>">See more >></a></td>
+                                        </tr>
+                                        <%send += requests[i].student.email+';'%>
+                                    <% } %>
+                        <% } %>  
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-6 text-right">
+                  <a href="/project/download/<%=project._id%>" class="btn btn-primary">Download CSV</a>
+                  <br>
+                  <br>
+                  <a href="mailto:<%=send%>" id = "sendmail" class="btn btn-primary" >Send Email to all selected Students</a>
+                </div>
+              </div>
+              <!-- Rejected Requests -->
+              <div class="tab-page">
+                <div class="panel">
+                  <div class="panel-body no-padding">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr >
+                          <th>Name</th>
+                          <th>Roll No</th>
+                          <th>Department</th>
+                          <th>Applied On</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for (var i = 0;i<requests.length;i++) { %>
+                          <%if (requests[i].status == "Rejected"){%> 
+                            <tr class="prj-row">
+                              <tr class="prj-row">
+                                  <td><%= requests[i].student.name %></td>
+                                  <td><a href="/request/FILE/view/<%=requests[i]._id%>" target="_blank">Image</a></td>
+                                  <td><%var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];%><%= requests[i].createdAt.getDate()%> - <%= months[requests[i].createdAt.getMonth()]%> - <%= requests[i].createdAt.getFullYear()%></td>
+                                  <td><a href="../request/view/<%= requests[i]._id %>">See more >></a></td>
+                              </tr>
+                            </tr>
+                          <% } %>
+                        <% } %>  
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- Ask to Meet -->
+              <div class="tab-page">
+                  <div class="panel">
+                    <div class="panel-body no-padding">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr >
+                            <th>Name</th>
+                            <th>Roll No</th>
+                            <th>Department</th>
+                            <th>Applied On</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for (var i = 0;i<requests.length;i++) { %>
+                            <%if (requests[i].status == "Ask to Meet"){%> 
+                              <tr class="prj-row">  
+                                 <td><%= requests[i].student.name %></td>
+                                 <td><%= requests[i].student.rollNumber %></td>
+                                 <td><%= requests[i].student.department %></td>
+                                 <td><%var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];%><%= requests[i].createdAt.getDate()%> - <%= months[requests[i].createdAt.getMonth()]%> - <%= requests[i].createdAt.getFullYear()%></td>
+                                 <td><a href="../request/view/<%= requests[i]._id %>">See more >></a></td>
+                              </tr>
+                            <% } %>
+                          <% } %>  
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- END MAIN CONTENT -->
+      </div>
+      <!-- END MAIN -->
+      <!-- <div class="clearfix"></div>
+      <footer>
+        <div class="container-fluid">
+          <p class="copyright">
+            &copy; Academics and Career Council, IIT Kanpur
+          </p>
+        </div>
+      </footer>
+    </div> -->
+    <!-- END WRAPPER -->
+    <!-- Javascript -->
+    <script>
+      // Get the tabs and tab pages
+      const tablinks = document.querySelectorAll("#tablist li");
+      const tabpages = document.querySelectorAll("#tabcontent .tab-page");
+      // Add event listeners to each tab button
+      tablinks.forEach((link, index) =>
+        link.addEventListener("click", () => changeTab(index))
+      );
+      // Define the change tab function
+      function changeTab(tabIndex) {
+        tablinks.forEach(link => link.classList.remove("active"));
+        tabpages.forEach(page => page.classList.remove("active"));
+        tablinks[tabIndex].classList.add("active");
+        tabpages[tabIndex].classList.add("active");
+      }
+    </script>
+   <script>
+    const projectRows = document.querySelectorAll(".prj-row");
+    const filter = document.querySelector("#dept-select");
+		const tblEmpty = document.querySelector(".tbl-empty");
+		filter.addEventListener('change', function(){
+			const dept = this.value;
+			let nonEmpty = false;
+			projectRows.forEach(row => {
+        
+        if (dept === 'all' || row.children[2].innerHTML === dept) {
+					row.style.display = '';
+					nonEmpty = true;
+				}
+				else row.style.display = 'none';
+			})
+    })
+	</script>
+    <script src="/dash/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/dash/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/dash/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/dash/assets/scripts/klorofil-common.js"></script>
+  </body>
+</html>

@@ -1,0 +1,418 @@
+@font-face {
+  font-family: "Varela Round";
+  src: url("../../assets/fonts/VarelaRound-Regular.ttf");
+}
+@font-face {
+  font-family: Montserrat;
+  src: url("../../assets/fonts/Montserrat/Montserrat-Regular.ttf");
+}
+body {
+  margin: 0;
+  padding: 32px;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#back-color {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
+
+#back-color img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.register {
+  padding: 32px;
+  width: 54vw;
+  min-width: 280px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: #FCFCFF;
+  flex-shrink: 1;
+  z-index: 2;
+}
+
+.row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-left: -12px;
+}
+
+.cell {
+  margin: 4px 12px;
+  flex-grow: 1;
+}
+
+/* Stylized Text Input */
+.main-input {
+  display: block;
+  width: 200px;
+  min-height: 64px;
+}
+
+.main-input .group {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.main-input label {
+  position: absolute;
+  top: 18px;
+  color: rgba(119, 119, 119, 0.75);
+  font: 600 18px "Montserrat";
+  cursor: text;
+  transition: 0.25s ease;
+}
+
+.main-input input {
+  display: block;
+  background: transparent;
+  width: 100%;
+  padding-top: 18px;
+  border: none;
+  border-radius: 0;
+  color: #777;
+  font-size: 16px;
+  font-family: "Montserrat";
+  transition: 0.3s ease;
+}
+
+@supports not (-ms-ime-align: auto) {
+  .main-input input:valid:not(:placeholder-shown) ~ label {
+    top: 0;
+    font: 700 10.8px "Montserrat";
+    color: rgba(119, 119, 119, 0.75);
+  }
+
+  .main-input input:invalid:not(:placeholder-shown):not(:focus) ~ label {
+    top: 0;
+    font: 700 10.8px "Montserrat";
+    color: #f00;
+  }
+}
+@supports (-ms-ime-align: auto) {
+  .main-input input:valid ~ label {
+    display: none;
+  }
+
+  .main-input input:invalid:not(:focus) ~ label {
+    top: 0;
+    font: 700 10.8px "Montserrat";
+    color: rgba(119, 119, 119, 0.75);
+  }
+}
+.main-input input.fb-filled ~ label {
+  top: 0 !important;
+  font: 700 10.8px "Montserrat" !important;
+  color: rgba(119, 119, 119, 0.75) !important;
+}
+
+.main-input input:focus {
+  outline: none;
+}
+
+.main-input input:focus ~ label {
+  top: 0;
+  font: 700 10.8px "Montserrat";
+  color: #6195FF !important;
+}
+
+.main-input input:focus ~ .bar:before {
+  transform: translateX(0);
+}
+
+.main-input input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #f7f7f7 inset;
+  -webkit-text-fill-color: #103880 !important;
+}
+
+.main-input .bar {
+  background: rgba(119, 119, 119, 0.75);
+  content: "";
+  width: 100%;
+  height: 3px;
+  border-radius: 1px;
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.main-input .bar:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  background: #6195FF;
+  transform: translateX(-100%);
+}
+
+.main-input ::selection {
+  background: rgba(97, 149, 255, 0.3);
+}
+
+.main-input.xs {
+  width: 100px;
+}
+
+.main-input.s {
+  width: 140px;
+}
+
+.main-input.m {
+  width: 200px;
+}
+
+.main-input.l {
+  width: 320px;
+}
+
+.main-input.xl {
+  width: 400px;
+}
+
+.main-input.xxl {
+  width: 37.8vw;
+}
+
+.main-input .undertext {
+  position: relative;
+  bottom: 0px;
+  left: 8px;
+  min-height: 18px;
+  font-size: 14px;
+  font-family: "Varela Round", sans-serif;
+}
+
+.main-input .undertext .undertext-info {
+  color: rgba(119, 119, 119, 0.7);
+}
+
+.main-input .undertext .undertext-error {
+  color: #f00;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: #10161A;
+}
+
+h1, h2, h3 {
+  margin-top: 0px;
+  margin-bottom: 48px;
+}
+
+h4, h5, h6 {
+  margin-top: 32px;
+  margin-bottom: 4px;
+}
+
+h1 {
+  font-size: 54px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 21px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 16px;
+}
+
+.btn-space {
+  width: 100%;
+  margin: 8px;
+  padding: 16px;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.main-btn, .white-btn, .outline-btn {
+  display: block;
+  padding: 10px 35px;
+  margin: 3px;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  -webkit-transition: 0.2s opacity;
+  transition: 0.2s opacity;
+  font-family: "Montserrat", sans-serif;
+  font-size: 19.2px;
+}
+
+.main-btn {
+  background: #1251ce;
+  color: #FFF;
+}
+
+.white-btn {
+  background: #FFF;
+  color: #10161A !important;
+}
+
+.outline-btn {
+  background: transparent;
+  color: #1251ce !important;
+  border-color: #1251ce;
+}
+
+.main-btn:hover, .white-btn:hover, .outline-btn:hover {
+  opacity: 0.8;
+}
+
+.title {
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.title:after {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 40px;
+  background-color: #6195FF;
+  margin-top: 20px;
+  margin: 20px auto 0px;
+}
+
+#fbspace {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#fbbutton {
+  margin-top: 6px;
+  background-color: #4267B2;
+  display: inline-block;
+  max-height: 40px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+#main-form {
+  position: relative;
+}
+
+#watermark {
+  display: block;
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+@media only screen and (max-width: 767px) {
+  .main-input.xs {
+    width: 80px;
+  }
+
+  .main-input.s {
+    width: 120px;
+  }
+
+  .main-input.m {
+    width: 156px;
+  }
+
+  .main-input.l {
+    width: 220px;
+  }
+
+  .main-input.xl {
+    width: 256px;
+  }
+
+  .main-input.xxl {
+    width: 256px;
+  }
+}
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 40px;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 16px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
+}
+
+/*# sourceMappingURL=login.css.map */

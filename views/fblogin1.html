@@ -1,0 +1,101 @@
+<head>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script>
+  // IF LOGGED IN (cookie found), REDIRECT TO DASH
+  const token = Cookies.get('x-auth-token');
+  if (token) document.location.replace('/home');
+</script>
+<script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.6.0/firebase.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyAHpIkr_IwgPi_atkMFbmj7seHhi5drjf8",
+      authDomain: "techkriti-ca-21.firebaseapp.com",
+      databaseURL: "https://techkriti-ca-21.firebaseio.com",
+      projectId: "techkriti-ca-21",
+      storageBucket: "techkriti-ca-21.appspot.com",
+      messagingSenderId: "673647490273",
+      appId: "1:673647490273:web:912621a1e1b6fbb8c3f3a0",
+      measurementId: "G-887F9B63G8"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    firebase.auth();
+
+
+    //fb login
+    var provider = new firebase.auth.FacebookAuthProvider();
+    //provider.addScope('user_birthday');
+    
+    // provider.setCustomParameters({
+    // 'display': 'popup'
+    // });
+    function login(){
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+  var token = result.credential.accessToken;
+  var credential = firebase.auth.FacebookAuthProvider.credential(token);
+  //we send this token to our auth end point
+  var data = {
+      token:token,
+  };
+  function sendPost() {
+  $.ajax({
+  url: '/auth/student/fblogin',
+  method: 'POST',
+  data: data,
+  success: (data, status, jqXHR) => {
+    // Save token cookie and redirect to dash
+    Cookies.set('x-auth-token', jqXHR.getResponseHeader('x-auth-token'), {
+      expires: 1 / 48 // expires in 30 minutes
+    });
+    document.location.replace('/home');
+  },
+  error: jqXHR => alert(jqXHR.responseText)
+});
+   
+  }
+ 
+  sendPost();
+
+  // The signed-in user info.
+  var user = result.user;
+  // ...
+  }).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+  console.log(error);
+  });
+
+    }
+</script>
+</head>
+
+<body background="/dash/assets/img/CAback.png">
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ <div align = "center">
+  <h1>
+    <font face="Comic Sans Ms" color = "white"> 
+  Welcome to facebook login page!!!!
+ Please allow popups
+ <button onclick="login()">Click here to login</button>
+</div>
+</body>

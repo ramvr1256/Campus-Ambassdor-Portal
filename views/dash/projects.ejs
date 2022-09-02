@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>All Projects | Research Portal, IITK</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="/dash/assets/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/dash/assets/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/dash/assets/vendor/linearicons/style.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="/dash/assets/css/main.css">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="/dash/assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/dash/assets/img/favicon.png">
+</head>
+
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-default navbar-fixed-top navgrad">
+			<div class="brand">
+				<a href="/home/"><img src="/dash/assets/img/logo-dark.png" alt="AnC Logo" class="img-responsive logo"></a>
+			</div>
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+				</div>
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right">
+						<!-- <li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-link"></i> <span>Quick Links</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="https://iitk.ac.in"target="_blank">IITK Home</a></li>
+								<li><a href="https://www.iitk.ac.in/doaa/"target="_blank">DOAA</a></li>
+								<li><a href="http://surge.iitk.ac.in"target="_blank">SURGE</a></li>
+								<li><a href="http://spo.iitk.ac.in/"target="_blank">SPO</a></li>
+
+							</ul>
+						</li> -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="http://graph.facebook.com/<%=email%>/picture" class="img-circle" alt="Avatar"> <span><%= name %></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+							<li><a href="/home/student/profile/"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+							<li><a href="/home/leader/"><i class="lnr lnr-chart-bars"></i> <span>Leaderboard</span></a></li>
+								<li><a href="/home/user/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>								
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
+		<!-- LEFT SIDEBAR -->
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li>
+							<a href="/project" class="active"><i class="lnr lnr-list"></i> <span> New Tasks</span></a>
+						</li>
+						<li>
+						  <a href="/home/"  class=""><i class="lnr lnr-home"></i> <span>Submitted Tasks</span></a>
+						</li>
+						<li>
+							<a href="/home/leader/"  class=""><i class="lnr lnr-chart-bars"></i> <span>Leaderboard</span></a>
+						</li>
+						<!-- <li>
+						  <a href="/project/self" class=""
+							><i class="lnr lnr-pushpin"></i> <span>Your Projects</span></a
+						  >
+						</li> -->
+						<li>
+						  <a href="/home/student/profile"><i class="lnr lnr-user"></i><span>Profile</span></a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- END LEFT SIDEBAR -->
+		<!-- MAIN -->
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="row container-fluid">
+					<div class="prj-filter">
+						
+					</div>
+					<% if(projects.length == 0 ){ %>
+						<div class="panel-heading">
+							<h1 class="panel-title">No Tasks Offered</h1>
+						</div>
+					<% }else{ %>
+						<% for (var i = 0;i<projects.length;i++) { %>
+
+							<script>
+								window.fbAsyncInit = function() {
+									FB.init({
+										appId            : '442462816705422',
+										autoLogAppEvents : true,
+										xfbml            : true,
+										version          : 'v5.0'
+									});
+								}
+							  </script>
+							  <script>
+								function oclick<%=i%>(){
+									FB.ui({
+										method: 'share',
+										href: '<%= projects[i].facebook %>',
+								   }, function(response){});
+								}
+							   </script>
+							<div class="col-md-6 container-fluid" id="notif-pos" >
+								<div class="panel newpanel" style="color: white;">
+								  <div class="panel-heading" width="50%">
+									<h2><%= projects[i].title %></h2>
+								  </div>
+								  <div class="panel-body" width="50%">
+									<table class="proj-data">
+									   <tr style="font-size: x-large;">
+										<th>Points</th>
+										<td><%=projects[i].points%></td>
+									   </tr>
+									   <tr>
+										<th>Last Date</th>
+										<td><%=projects[i].lastDate%></td>
+									   </tr>
+									</tr>
+										<th>Offered on:</th>
+										<td>
+										  <% function getdate(date){ var months = ["January",
+										  "February", "March", "April", "May", "June", "July",
+										  "August", "September", "October", "November", "December"];
+										  return date.getDate() + '-' + months[date.getMonth()] +
+										  '-' + date.getFullYear(); } %> <%=
+										  getdate(projects[i].createdAt) %>
+										</td>
+									  </tr>
+									</table>
+									<br>
+									<p><%= projects[i].description %></p>
+							  </div>
+						  <div style = "margin-left: 5px;">
+								<a href="#" class="fa fa-facebook" onclick = " oclick<%=i%>()"></a>
+								<a href="https://wa.me/?text=<%= projects[i].whatsapp %>" class="fa fa-whatsapp" target="_blank"></a>
+								<a href="http://twitter.com/share?text=&url=<%=projects[i].twitter%>" class="fa fa-twitter" target="_blank"></a>
+						  </div>
+							  <div class="panel-body" >
+								  <h3>Submit Proof of completion:</h3>
+								  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal<%=i%>">Upload</button>
+								  <br>
+								  <div id="modal<%=i%>" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+								  
+									  <!-- Modal content-->
+									  <div class="modal-content">
+										<div class="modal-header">
+										  <button type="button" class="close" data-dismiss="modal">&times;</button>
+										  <h4 class="modal-title" style="color: black;">Please follow all rules before uploading.</h4>
+										</div>
+										<div class="modal-body">
+											<form id="new-post" name ="uploadForm" method="post" enctype="multipart/form-data"  action="/request/createrequests/<%= projects[i]._id%>"
+												>
+												  <label style="color: black;">Please Upload image here(PEG Only) and under 3 MB.
+													Rules for verification:<br>
+													1. First, make sure to Like and Share the post yourself. The links have been provided below, so make sure you like and share the post.<br>
+													2. Upload images(screenshots) of your sharing of posts on social media.<br>
+													3. Make sure to share with as many people as possible on Whatsapp too!<br>
+													4. Duplicate or false images will be heavily penalized!<br>
+													<b>5. *Merge all your screenshots in one JPEG image before uploading.* </b><br>	
+													</label>
+												  <br><br>
+												  <input type="file" id="myFile" name="projectfile" accept="image/jpeg" required style="margin-left: -10px; color: black;"/>
+												  <!-- <input type="file" id="myFile" name="projectfile" required style="margin-left: -10px;"/>
+												  <input type="file" id="myFile" name="projectfile" required style="margin-left: -10px;"/> -->
+												  <br>
+												  <br />
+												  <div >
+													   <button type="submit" class="btn btn-success" style="background-color:white; color:black;">Submit</button>
+												  </div>
+												</form>
+										</div>
+										<div class="modal-footer">
+										  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										</div>
+									  </div>
+								  
+									</div>
+								  </div>
+							  </div>
+							</div>
+						  </div>
+						<% } %>
+					<% } %>
+				</div>
+			</div>
+			<!-- END MAIN CONTENT -->
+		</div>
+		<!-- END MAIN -->
+		<!-- <div class="clearfix"></div>
+		<footer>
+			<div class="container-fluid">
+				<p class="copyright">&copy; Academics and Career Council, IIT Kanpur</p>
+			</div>
+		</footer>
+	</div> -->
+	<!-- END WRAPPER -->
+	<!-- Javascript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$('[id="myFile"]').bind('change', function() {
+			//this.files[0].size gets the size of your file.
+			if(this.files[0].size>3000000)
+			alert("Please upload again.File size should be less than 3MB");
+			});
+		</script>
+	<script>
+		const projectRows = document.querySelectorAll(".prj-row");
+		const filter = document.querySelector("#dept-select");
+		const tblEmpty = document.querySelector(".tbl-empty");
+		filter.addEventListener('change', function(){
+			const dept = this.value;
+			let nonEmpty = false;
+			projectRows.forEach(row => {
+				if (dept === 'all' || row.children[2].innerHTML === dept.toUpperCase()) {
+					row.style.display = '';
+					nonEmpty = true;
+				}
+				else row.style.display = 'none';
+			})
+			if (nonEmpty) tblEmpty.style.display = 'none';
+			else tblEmpty.style.display = 'block';
+		})
+	</script>
+	<script src="/dash/assets/vendor/jquery/jquery.min.js"></script>
+	<script src="/dash/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/dash/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="/dash/assets/scripts/klorofil-common.js"></script>
+	<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+</body>
+
+</html>

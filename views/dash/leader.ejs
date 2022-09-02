@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Dashboard | Research Portal, IITK</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- VENDOR CSS -->
+	
+	<link rel="stylesheet" href="/dash/assets/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/dash/assets/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="/dash/assets/vendor/chartist/css/chartist-custom.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="/dash/assets/css/main.css">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="/dash/assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/dash/assets/img/favicon.png">
+	<!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.0/js/jquery.tablesorter.js" integrity="sha256-serXvhbeEKdQIfTFSD3wpNCGNx2+/9py7VXfwLhYTfk="
+        crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.0/css/theme.bootstrap_3.min.css"
+		integrity="sha256-dXZ9g5NdsPlD0182JqLz9UFael+Ug5AYo63RfujWPu8=" crossorigin="anonymous" />
+		
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+		
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.0/css/theme.default.min.css"
+        integrity="sha256-kZJ4kB78IbXuxMtCpmaXzii8vxEKtu8pjicH62E0/qM=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.0/css/theme.bootstrap.min.css"
+        integrity="sha256-dXZ9g5NdsPlD0182JqLz9UFael+Ug5AYo63RfujWPu8=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.0/css/jquery.tablesorter.pager.min.css"
+        integrity="sha256-x+whz5gQKEXx3S3pxwmxPhC1OWpRiHaPXUW5Yt8/fzg=" crossorigin="anonymous" />
+    <style>
+    </style>
+    <script>
+
+        $(document).ready(function () {
+            $("#myTable").DataTable();
+        });
+    </script>
+
+
+</head>
+
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-default navbar-fixed-top navgrad">
+			<div class="brand">
+				<a href="/home/"><img src="/dash/assets/img/logo-dark.png" alt="AnC Logo" class="img-responsive logo"></a>
+			</div>
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+				</div>
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right">
+						<!-- <li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-link"></i> <span>Quick Links</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="https://iitk.ac.in"target="_blank">IITK Home</a></li>
+								<li><a href="https://www.iitk.ac.in/doaa/"target="_blank">DOAA</a></li>
+								<li><a href="http://surge.iitk.ac.in"target="_blank">SURGE</a></li>
+								<li><a href="http://spo.iitk.ac.in/"target="_blank">SPO</a></li>
+
+							</ul>
+						</li> -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="http://graph.facebook.com/<%=email%>/picture" class="img-circle" alt="Avatar"> <span><%= name %></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="/home/student/profile/"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="/home/leader/"><i class="lnr lnr-cog"></i> <span>Leaderboard</span></a></li>
+								<li><a href="/home/user/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
+		<!-- LEFT SIDEBAR -->
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li>
+							<a href="/project" class=""><i class="lnr lnr-list"></i> <span> New Tasks</span></a>
+						</li>
+						<li>
+						  <a href="/home/"  class=""><i class="lnr lnr-home"></i> <span>Submitted Tasks</span></a>
+						</li>
+						<li>
+							<a href="/home/leader/"  class="active"><i class="lnr lnr-chart-bars"></i> <span>Leaderboard</span></a>
+						</li>
+						<!-- <li>
+						  <a href="/project/self" class=""
+							><i class="lnr lnr-pushpin"></i> <span>Your Projects</span></a
+						  >
+						</li> -->
+						<li>
+						  <a href="/home/student/profile"><i class="lnr lnr-user"></i><span>Profile</span></a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- END LEFT SIDEBAR -->
+		<!-- MAIN -->
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+			
+
+			<div class="panel-body no-padding">
+				<h3>Leaderboard</h3>
+				<b>Your Position is:&nbsp; <%=index+1%></b>
+				<table class="table table-striped" id="myTable">
+					<thead>
+						<tr>
+							<th>Rank</th>
+							<th>Name</th>
+							<th>College</th>
+							<th>Points</th>
+							<th>Referral Points</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for (var i = 0;i<student.length;i++) { %>
+							<%if(i==index){%>
+							<tr class="info">
+								<%}else{%>
+							<tr>
+								<%}%>
+								<td><%= i+1%></td>
+
+
+								<td>
+										<%=student[i].name %>
+								</td>
+								<td><%=student[i].college%></td>
+								<td><%= student[i].points %></td>
+								<td><%= student[i].referal_points %></td>
+							</tr>
+						<%}%>
+					</tbody>
+				</table>
+			</div>
+							
+			</div>
+			<!-- END MAIN CONTENT -->
+		</div>
+		<!-- END MAIN -->
+		<!-- <div class="clearfix"></div>
+		<footer>
+			<div class="container-fluid">
+				<p class="copyright">&copy; Academics and Career Council, IIT Kanpur</p>
+			</div>
+		</footer>
+	</div> -->
+	<!-- END WRAPPER -->
+	<!-- Javascript -->
+]
+	<script src="/dash/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/dash/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="/dash/assets/scripts/klorofil-common.js"></script>
+	
+</body>
+
+</html>
